@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
+      CSV_FILENAME: data.csv
+
+  manager:
+    build: ./manager
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
+      CSV_FILENAME: data.csv
+    depends_on:
+      - db
